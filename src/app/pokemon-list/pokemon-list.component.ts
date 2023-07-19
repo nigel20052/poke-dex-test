@@ -8,7 +8,9 @@ import { PokemonApiService } from '../pokemon-api.service';
   styleUrls: ['./pokemon-list.component.css'],
 })
 export class PokemonListComponent {
+  search: string = '';
   pokemonList: GenericPokemon[] = [];
+  filteredPokemonList: GenericPokemon[] = [];
 
   constructor(private pokemonService: PokemonApiService) {}
 
@@ -19,7 +21,19 @@ export class PokemonListComponent {
   getPokemonList(): void {
     this.pokemonService
       .getPokemonApi()
-      .subscribe((pokeapi) => (this.pokemonList = pokeapi.results));
+      .subscribe((pokeapi) => {
+        this.pokemonList = pokeapi.results;
+        this.filteredPokemonList = pokeapi.results;
+      });
   }
 
+  onSearch(): void {
+    if (this.search) {
+      this.filteredPokemonList = this.pokemonList.filter((p) =>
+        p.name.toLocaleLowerCase().includes(this.search)
+      );
+    } else {
+      this.filteredPokemonList = this.pokemonList;
+    }
+  }
 }
