@@ -1,0 +1,11 @@
+<div>
+    <h1>Pokemon list ({{pokemonList.length}})</h1>
+    <div *ngIf="pokemonList.length; else noPokes" class="grid">
+        <div *ngFor="let pokemon of pokemonList">
+            <app-pokemon-preview [pokemonUrl]="pokemon.url"></app-pokemon-preview>
+        </div>
+    </div>
+    <ng-template #noPokes>
+        No pokemon found.
+    </ng-template>
+</div>

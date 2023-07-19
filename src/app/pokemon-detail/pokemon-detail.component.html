@@ -1,0 +1,18 @@
+<div class="card" *ngIf="pokemon; else noPoke">
+    <div class="title">
+        <h2><b>{{pokemon.name | uppercase}}</b></h2>
+        <button (click)="onBack()">Go back</button>
+    </div>
+    <img src="{{pokemon.sprites.front_default}}" alt="Avatar" style="width:100px">
+    <div class="container">
+        <div *ngIf="pokemon.types.length">
+            <ul *ngFor="let type of pokemon.types">
+                <li>{{type.type.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<ng-template #noPoke>
+    <p>Invalid Pokemon name</p>
+    <button (click)="onBackHome()">Go to home</button>
+</ng-template>

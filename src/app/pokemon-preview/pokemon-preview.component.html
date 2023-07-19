@@ -1,0 +1,11 @@
+<div class="card" *ngIf="pokemon && pokemonUrl" routerLink="/pokemon/{{pokemon.name}}">
+    <img src="{{pokemon.sprites.front_default}}" alt="Avatar" style="width:100px">
+    <div class="container">
+        <h4><b>{{pokemon.name | uppercase}}</b></h4>
+        <div *ngIf="pokemon.types.length">
+            <ul *ngFor="let type of pokemon.types">
+                <li>{{type.type.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
